@@ -1,0 +1,6 @@
+Game name: SpaceXplorer(Tentative)
+
+Idea: Free-roam/sandbox space game where you control a spaceship's travel through the galaxy.
+You'll start in one solar system, then when reaching a certain "level" within there, new randomly genrated galaxies will open up.
+
+More to come.
