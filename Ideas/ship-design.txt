@@ -1,0 +1,35 @@
+- Seb General idea -
+
+-- General --
+
+Ships are split into 3(4) general different systems;
+
+#1: The design, these are premade and define your basic ship structure. They are the hull of the ship.
+
+		Each hull has an array that defines the grid system of the hull.
+		Slots are mostly the same, but there are some special ones, and certain slots may only contain certain module types.
+		For example:
+			0: No slot at all
+			1: may contain modules that can go everywhere
+			2: weapons
+			etc..
+			[
+			0, 0, 0, 2, 2, 0, 0, 0
+			0, 0, 0, 1, 1, 0, 0, 0,
+			0, 0, 2, 1, 1, 2, 0, 0,
+			0, 0, 1, 1, 1, 1, 0, 0,
+			0, 0, 1, 1, 1, 1, 0, 0,
+			0, 2, 1, 1, 1, 1, 2, 0,
+			0, 1, 1, 1, 1, 1, 1, 0,
+			0, 1, 1, 1, 1, 1, 1, 0,
+			0, 1, 1, 1, 1, 1, 1, 0,
+			]
+
+		However, this system doesn't quite fit the capabilities it would need to suit everything. More to come.
+
+
+#2: The modules
+
+#3 Chips
+
+#(4): Make your own ship hull from hull parts
