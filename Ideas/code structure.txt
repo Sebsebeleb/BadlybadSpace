@@ -1,0 +1,50 @@
+Different systems that are needed:
+
+*World
+*Collision detection
+*GUI
+*Audio
+*Ship design
+*Particles
+*Graphics
+*User input
+
+Different concepts should be decoupled and standalone. Only classes that rely on graphics/sound/user input should import cocos
+
+-- Suggestion for structure: -- 
+
+Classes:
+
+*Audio			-- Sounds and music
+*Game			-- Base game init and loop
+*Graphics 		-- Lower level for loading sprites 
+*Gui 			-- Everything related to gui, so basically the HUD 
+*Ui				-- 
+*Menu	
+*Ship-design
+*Rendering		-- High level rendering of what should be on the screen
+*World 			-- Handles game progression, factions, world map, etc.
+*Map 			-- Handles the sector you are currently in  #Not quite sure how the difference between this and Game would be + should this handle collision detection? Low level collision or high level collision?
+*Physics?
+
+Relationial:
+
+Menu 	-> Game 	-> Gui 			-> Graphics
+									-> Audio
+					-> World
+					-> Ui
+					-> Map
+					-> Rendering 	-> Graphics
+									-> Map
+					-> Audio
+		-> Ship-design
+
+--- Modules that need cocos: ---
+
+*Graphics 	-- Sprites
+*Audio		-- Audio
+*Ui			-- User input
+*Menu		-- cocos.menu
+*Gui 		-- Sprites and/or canvas drawing
+
+
