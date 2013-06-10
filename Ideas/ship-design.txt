@@ -5,31 +5,65 @@
 Ships are split into 3(4) general different systems;
 
 #1: The design, these are premade and define your basic ship structure. They are the hull of the ship.
+		
+		--- Definitions ---
+		
+		Some definitions:
+		hull-design: The base versions of hulls. Basically the blueprints for ships. This could be a "greatsword" or "longbow" in rpg terms. 
+		hull: The hull is the "built" version of a hull-design. This could be a "Iron greatsword", or a "modded version", which would be a "Iron greatsword of strength."
+		ship-design: This is the final version, after the player has placed modules. These have certain requirements, for instance, a ship without any generator or thruster aint a good ship.
 
-		Each hull has an array that defines the grid system of the hull.
-		Slots are mostly the same, but there are some special ones, and certain slots may only contain certain module types.
-		For example:
-			0: No slot at all
-			1: may contain modules that can go everywhere
-			2: weapons
-			etc..
-			[
-			0, 0, 0, 2, 2, 0, 0, 0
-			0, 0, 0, 1, 1, 0, 0, 0,
-			0, 0, 2, 1, 1, 2, 0, 0,
-			0, 0, 1, 1, 1, 1, 0, 0,
-			0, 0, 1, 1, 1, 1, 0, 0,
-			0, 2, 1, 1, 1, 1, 2, 0,
-			0, 1, 1, 1, 1, 1, 1, 0,
-			0, 1, 1, 1, 1, 1, 1, 0,
-			0, 1, 1, 1, 1, 1, 1, 0,
-			]
+		To sum it up in a sentence: The player places {modules} on a {hull} he owns. The {hull} is based on a {hull-design}. The result is a ship with a {ship-design} designed by the player.
 
-		However, this system doesn't quite fit the capabilities it would need to suit everything. More to come.
+		--- Stuff ---
+
+		Each hull has a 2d grid of slots to put modules in.
+		Most slots are standard slots that can have one or more categories of modules. For instance, all the rear slots might be compitable with engines, but not weapons.
+
+		Example of a typical slot: 
+			{
+				position: [1,2],
+				allowed: ["Weapon","Engine","General","Thruster"],
+				direction: 0,
+				weapon_rotation: 90,
+				thrust_rotation: 30,
+			}
+
+		In addition to regular slots, a ship might have "modded" slots. These have randomly generated modifiers, like the common prefix and suffix system in rpgs.
+
+		Example:
+		{
+			position: [1,2],
+			allowed: ["Weapon","General"],
+			direction: 0,
+			weapon_rotation: 90,
+			mod: [
+				"name"?: "Powerful",
+				"weapon_damage": 0.8,
+				"weapon_projectile_speed": 0.2,
+				"general_power": 0.2,
+				]
+		}
+		
 
 
 #2: The modules
 
+-- types --
+* Weapons
+* General (has many subcategories)
+** Generator
+** Stabilators (will be described in general ship)
+** Shielding
+** Stealth
+** Repair-drones
+** Radar (will be describedd in general ship)
+*Thrusters
+
+The main type decides where a module generally might go, depending on the hull-design. For instance, weapons generally have to be in the outermost layer of grids, and usually not in the back, while thrusters might only be placed on the sides and the rear. General modules may be placed everyhwere, except maybe in the outermost slots.
+
 #3 Chips
+
+Chips is an idea to let the player fine-optimize and make advanced ship behaviour. In the simplest form, you can bind keys to different modules.
 
 #(4): Make your own ship hull from hull parts
