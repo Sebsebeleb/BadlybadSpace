@@ -45,6 +45,32 @@ Ships are split into 3(4) general different systems;
 				]
 		}
 		
+		Example of full Ship-Design with 2 weapons and 2 thrusters placed:
+		{
+			name: "Vindicator",
+			type: "fighter",
+			hull: {
+				<hull definition goes here>
+			}
+			slots: {
+				0,0,1,1,0,0
+				0,0,0,0,0,0
+				0,0,0,0,0,0
+				0,0,0,0,0,0
+				0,2,0,0,2,0
+			}
+			ids: {
+				1: {
+					type:"weapon",
+					<weapon definition>
+				}
+				2: {
+					type:"thruster",
+					thurst: 20,
+					<etc.>
+				}
+			}
+		}
 
 
 #2: The modules
