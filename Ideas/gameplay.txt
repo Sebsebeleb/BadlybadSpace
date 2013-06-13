@@ -1,0 +1,57 @@
+-- Projectiles --
+
+They all share a couple of attributes and methods;
+
+.position
+.velocity?
+.direction (=velocity?)
+.collides = True
+.stats
+.collides_with = 1 #0 = nothing, 1 = solid (ships, stations), 2 = solid + small solid (missiles, bombs)
+:on_update?
+:on_collide
+:on_explode
+
+Weapons will be fired by projectiles, given certain arguments from the weapon:
+
+position = {{weapon}}.position == ship.{{weapon}}.position == (ship.position + offset depending on where the weapon is located) 
+
+Direction = angle
+
+Maybe all projectiles should be handled as possibly complex classes, with some default behaviour?
+
+For example: It's default projectiles collide, and when they collide, possibly explode. Also default that they move in just the angle provided by the weapon, and then move on untill they dissipate or hit something
+
+-Example of simple bullet b:
+
+b.position = Vector2(20,30)
+b.velocity = Vector2(0,5)
+b.collides = true
+b.stats = {damage: 20, penetration: 0, module-killer: 1}
+b:on_update = None
+b:on_collide = None
+b:on_explode = None
+
+The game then handles the projectiles like this:
+
+if b.on_update:
+	b.on_update
+
+if not b.on_update or b.on_update and b.default_move:
+	b.position = b.position + b.velocity
+
+other = collided(b)
+if collided(b)
+	other.on_pre_collide(b) #<- Maybe give stuff a chance to dodge/whatever?
+	if b.on_collide:
+		b.on_collide(other)
+	else
+		other.take_damage(b.stats.damage, b.position) #important that where the damage is taken is known
+
+-
+
+When ships take damage, modules in the close area have a chance of being damaged/destroyed
+
+basically, the max length of a damage possibilty for a regular type of bullet with a huge penetration should be able to go just about to the middle (either to exactly the middle in depth, a little further or a little shorter) Where the chance and damage will falloff the further away the module away. The length should cut off quicker to the sides.
+
+Loss of a module renders it unable to function, and maybe loses some of it's weight, but can be repaired on the fly with repair modules, or in space stations.
